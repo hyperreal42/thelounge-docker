@@ -46,6 +46,13 @@ commands you execute in the container via Docker to ensure that file permissions
 $ docker exec --user node -it [container_name] thelounge add MyUser
 ```
 
+### SELinux
+For SELinux users, change the security context of the host mountpoint at `~/.thelounge`:
+```
+mkdir -p ~/.thelounge
+chcon -Rt svirt_sandbox_file_t ~/.thelounge
+```
+
 ### Configuring identd
 
 Since root permissions are dropped in the container the default port 113 can not be used as it is within the
